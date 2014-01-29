@@ -8,13 +8,17 @@
 #include "io.h"
 
 #define switches (volatile char *) SWITCHES_BASE
+#define ledr1s (char*) LEDS_BASE
+#define ledr2s (char*) LEDS_BASE
 #define leds (char *) LEDS_BASE
 #define keys (volatile char *) KEYS_BASE
-
+void initializeVGA(void);
+void displayVGA(void);
 void multiply_matrix();
 alt_up_character_lcd_dev* init_lcd();
 void lcd_to_key(alt_up_character_lcd_dev* char_lcd_dev);
-
+void blink(void);
+void readfile(void);
 int main(void) {
 
 	printf("Starting Matrix Multiplication\n");
@@ -22,12 +26,112 @@ int main(void) {
 	multiply_matrix();
 	printf("Done! Time Elapsed : %f seconds\n" , (float) alt_timestamp() / (float) alt_timestamp_freq());
 
+
+
+	// Init for SD_card
+
+	alt_up_sd_card_dev *device_reference = NULL;
+	int connected = 0;
+
+
+
+
+
+
+	// Initialize pixel buffer
+	alt_up_pixel_buffer_dma_dev* pixel_buffer;
+	// Use the name of your pixel buffer DMA core
+	pixel_buffer = alt_up_pixel_buffer_dma_open_dev(BUFFER_DMA_NAME);
+	if (pixel_buffer == NULL)
+	{
+		printf("pixel_buffer failed \n");
+	}
+	// Set the background buffer address – Although we don’t use thebackground,
+	// they only provide a function to change the background buffer address, so
+	// we must set that, and then swap it to the foreground.
+	alt_up_pixel_buffer_dma_change_back_buffer_address(pixel_buffer, PIXEL_BUFFER_BASE);
+	// Swap background and foreground buffers
+	alt_up_pixel_buffer_dma_swap_buffers(pixel_buffer);
+
+	// Wait for the swap to complete while
+	(alt_up_pixel_buffer_dma_check_swap_buffers_status(pixel_buffer));
+
+	// Initialize for char
+	alt_up_char_buffer_dev *char_buffer;
+	char_buffer = alt_up_char_buffer_open_dev("/dev/character_buffer");
+	if ( char_buffer == NULL)
+	printf("Char_buffer failed \n");
+
 	while(1){
-		*leds = *switches;
+		// Clear the screen
+			alt_up_pixel_buffer_dma_clear_screen(pixel_buffer, 0);
+			// Draw a blue line to the foreground buffer
+			alt_up_pixel_buffer_dma_draw_line(pixel_buffer, 0, 120, 320, 120, 0x1234, 0);
+
+			alt_up_pixel_buffer_dma_draw_box(pixel_buffer, 50, 50, 60, 60, 0x2222, 0);
+			alt_up_pixel_buffer_dma_draw_rectangle(pixel_buffer, 70, 70, 80, 80, 0x3333, 0);
+			//helper_plot_pixel(register unsigned int buffer_start, register int line_size, register int x, register int y, register int color, register int mode)
+
+
+			alt_up_char_buffer_init(char_buffer);
+			// Display Game Name, Team Name, Scores
+			alt_up_char_buffer_string(char_buffer, "Team SharkCat", 0, 5);
+			alt_up_char_buffer_string(char_buffer, "Game: Sneak", 20, 5);
+			alt_up_char_buffer_string(char_buffer, "Highest Score: 0", 40, 5);
+			alt_up_char_buffer_string(char_buffer, "Current Score: 0", 60, 5);
+
+
+			device_reference = alt_up_sd_card_open_dev(SDCARD_INTERFACE_NAME);
+			if (device_reference != NULL) {
+					if ((connected == 0) && (alt_up_sd_card_is_Present())) {
+						printf("Card connected.\n");
+						if (alt_up_sd_card_is_FAT16()) {
+							printf("FAT16 file system detected.\n");
+							readfile();
+						} else {
+							printf("Unknown file system.\n");
+						}
+						connected = 1;
+					} else if ((connected == 1) && (alt_up_sd_card_is_Present() == false)) {
+						printf("Card disconnected.\n");
+						connected = 0;
+					}
+			}
+
+
 	}
 
 	return 0;
 }
+
+void displayVGA(void){
+
+}
+void initializeVGA(void)
+{
+	// Initialize pixel buffer
+	alt_up_pixel_buffer_dma_dev* pixel_buffer;
+	// Use the name of your pixel buffer DMA core
+	pixel_buffer = alt_up_pixel_buffer_dma_open_dev("/dev/pixel_buffer_dma");
+
+	// Set the background buffer address – Although we don’t use thebackground,
+	// they only provide a function to change the background buffer address, so
+	// we must set that, and then swap it to the foreground.
+	alt_up_pixel_buffer_dma_change_back_buffer_address(pixel_buffer, PIXEL_BUFFER_BASE);
+	// Swap background and foreground buffers
+	alt_up_pixel_buffer_dma_swap_buffers(pixel_buffer);
+
+	// Wait for the swap to complete while
+	(alt_up_pixel_buffer_dma_check_swap_buffers_status(pixel_buffer));
+
+	// Initialize for char
+	alt_up_char_buffer_dev *char_buffer;
+	char_buffer = alt_up_char_buffer_open_dev("/dev/char_drawer");
+
+	// Clear the screen
+	alt_up_pixel_buffer_dma_clear_screen(pixel_buffer, 0);
+}
+
 
 void multiply_matrix(){
 
@@ -53,6 +157,25 @@ void multiply_matrix(){
 				c[i][j] = sum;
 			}
 		}
+}
+
+
+void readfile(void)
+{
+	short error;
+	char file_name[50];
+	error = alt_up_sd_card_find_first('.', file_name);
+	if (error != 0){
+		printf("Error find first\n");
+		return;
+	}
+	printf("First file detected: %s\n",file_name);
+	while ( 1)
+	{
+		error = alt_up_sd_card_find_next(file_name);
+		if (error) break;
+		printf("File Detected: %s\n",file_name);
+	}
 }
 
 void timer_test(void) {

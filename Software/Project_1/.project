@@ -3,6 +3,7 @@
 	<name>Project_1</name>
 	<comment></comment>
 	<projects>
+		<project>Project_1_bsp</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

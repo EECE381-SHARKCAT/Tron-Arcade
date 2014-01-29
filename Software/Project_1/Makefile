@@ -142,7 +142,8 @@ ACDS_VERSION := 12.0sp2
 ELF := Project_1.elf
 
 # Paths to C, C++, and assembly source files.
-C_SRCS := project_1.c
+C_SRCS += project_1.c
+C_SRCS += LightCycle.c
 CXX_SRCS :=
 ASM_SRCS :=
 
