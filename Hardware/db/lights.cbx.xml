@@ -18,6 +18,7 @@
 		<CBX_INST_ENTRY INSTANCE_NAME="|lights|nios_system:NiosII|nios_system_nios2_qsys_0:nios2_qsys_0|nios_system_nios2_qsys_0_register_bank_a_module:nios_system_nios2_qsys_0_register_bank_a|altsyncram:the_altsyncram" CBX_FILE_NAME="altsyncram_m6h1.tdf"/>
 		<CBX_INST_ENTRY INSTANCE_NAME="|lights|nios_system:NiosII|nios_system_jtag_uart_0:jtag_uart_0|nios_system_jtag_uart_0_scfifo_r:the_nios_system_jtag_uart_0_scfifo_r|scfifo:rfifo" CBX_FILE_NAME="scfifo_1n21.tdf"/>
 		<CBX_INST_ENTRY INSTANCE_NAME="|lights|nios_system:NiosII|nios_system_nios2_qsys_0:nios2_qsys_0|nios_system_nios2_qsys_0_mult_cell:the_nios_system_nios2_qsys_0_mult_cell|altmult_add:the_altmult_add_part_1" CBX_FILE_NAME="mult_add_4cr2.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|lights|nios_system:NiosII|nios_system_ps2_0:ps2_0|scfifo:Incoming_Data_FIFO" CBX_FILE_NAME="scfifo_tr31.tdf"/>
 		<CBX_INST_ENTRY INSTANCE_NAME="|lights|nios_system:NiosII|nios_system_scaler:scaler|altera_up_video_scaler_multiply_height:Multiply_Height|scfifo:Multiply_Height_FIFO" CBX_FILE_NAME="scfifo_qd31.tdf"/>
 		<CBX_INST_ENTRY INSTANCE_NAME="|lights|nios_system:NiosII|nios_system_nios2_qsys_0:nios2_qsys_0|nios_system_nios2_qsys_0_ic_tag_module:nios_system_nios2_qsys_0_ic_tag|altsyncram:the_altsyncram" CBX_FILE_NAME="altsyncram_r4i1.tdf"/>
 		<CBX_INST_ENTRY INSTANCE_NAME="|lights|nios_system:NiosII|nios_system_nios2_qsys_0:nios2_qsys_0|nios_system_nios2_qsys_0_mult_cell:the_nios_system_nios2_qsys_0_mult_cell|altmult_add:the_altmult_add_part_2" CBX_FILE_NAME="mult_add_6cr2.tdf"/>

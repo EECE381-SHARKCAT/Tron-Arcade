@@ -4,7 +4,7 @@ JedecChain;
 	DefaultMfr(6E);
 
 	P ActionCode(Cfg)
-		Device PartName(EP2C35F672) Path("C:/Users/Ali/Desktop/UBC/EECE_381/Exercises/Excercise_1/1.2/") File("lights_time_limited.sof") MfrSpec(OpMask(1));
+		Device PartName(EP2C35F672) Path("C:/Users/Ali/Desktop/UBC/EECE_381/Exercises/Project1/Hardware/") File("lights_time_limited.sof") MfrSpec(OpMask(1));
 
 ChainEnd;
 

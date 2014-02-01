@@ -1,5 +1,5 @@
 TimeQuest Timing Analyzer report for lights
-Tue Jan 28 17:10:35 2014
+Thu Jan 30 20:03:08 2014
 Quartus II 32-bit Version 12.0 Build 263 08/02/2012 Service Pack 2 SJ Web Edition
 
 
@@ -87,8 +87,8 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +---------------------------------------------------------------+--------+--------------------------+
 ; SDC File Path                                                 ; Status ; Read at                  ;
 +---------------------------------------------------------------+--------+--------------------------+
-; nios_system/synthesis/submodules/altera_reset_controller.sdc  ; OK     ; Tue Jan 28 17:10:33 2014 ;
-; nios_system/synthesis/submodules/nios_system_nios2_qsys_0.sdc ; OK     ; Tue Jan 28 17:10:33 2014 ;
+; nios_system/synthesis/submodules/altera_reset_controller.sdc  ; OK     ; Thu Jan 30 20:03:06 2014 ;
+; nios_system/synthesis/submodules/nios_system_nios2_qsys_0.sdc ; OK     ; Thu Jan 30 20:03:06 2014 ;
 +---------------------------------------------------------------+--------+--------------------------+
 
 
@@ -288,10 +288,10 @@ No dedicated SERDES Receiver circuitry present in device or used in design
 +---------------------------------+-------+------+
 ; Illegal Clocks                  ; 0     ; 0    ;
 ; Unconstrained Clocks            ; 1     ; 1    ;
-; Unconstrained Input Ports       ; 55    ; 55   ;
-; Unconstrained Input Port Paths  ; 204   ; 204  ;
-; Unconstrained Output Ports      ; 134   ; 134  ;
-; Unconstrained Output Port Paths ; 198   ; 198  ;
+; Unconstrained Input Ports       ; 57    ; 57   ;
+; Unconstrained Input Port Paths  ; 206   ; 206  ;
+; Unconstrained Output Ports      ; 136   ; 136  ;
+; Unconstrained Output Port Paths ; 216   ; 216  ;
 +---------------------------------+-------+------+
 
 
@@ -301,7 +301,7 @@ No dedicated SERDES Receiver circuitry present in device or used in design
 Info: *******************************************************************
 Info: Running Quartus II 32-bit TimeQuest Timing Analyzer
     Info: Version 12.0 Build 263 08/02/2012 Service Pack 2 SJ Web Edition
-    Info: Processing started: Tue Jan 28 17:10:30 2014
+    Info: Processing started: Thu Jan 30 20:03:03 2014
 Info: Command: quartus_sta lights -c lights
 Info: qsta_default_script.tcl version: #2
 Warning (20028): Parallel compilation is not licensed and has been disabled
@@ -396,9 +396,9 @@ Info (332001): The selected device family is not supported by the report_metasta
 Info (332102): Design is not fully constrained for setup requirements
 Info (332102): Design is not fully constrained for hold requirements
 Info: Quartus II 32-bit TimeQuest Timing Analyzer was successful. 0 errors, 13 warnings
-    Info: Peak virtual memory: 352 megabytes
-    Info: Processing ended: Tue Jan 28 17:10:35 2014
+    Info: Peak virtual memory: 369 megabytes
+    Info: Processing ended: Thu Jan 30 20:03:08 2014
     Info: Elapsed time: 00:00:05
-    Info: Total CPU time (on all processors): 00:00:04
+    Info: Total CPU time (on all processors): 00:00:05
 
 

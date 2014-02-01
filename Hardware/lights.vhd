@@ -23,8 +23,8 @@ ENTITY lights IS
 		SRAM_ADDR : OUT STD_LOGIC_VECTOR(17 DOWNTO 0);
 		SRAM_LB_N, SRAM_UB_N, SRAM_CE_N, SRAM_OE_N, SRAM_WE_N : OUT STD_LOGIC;
 		VGA_CLK, VGA_BLANK, VGA_HS, VGA_VS, VGA_SYNC : OUT STD_LOGIC;
-		VGA_R, VGA_G, VGA_B : OUT STD_LOGIC_VECTOR(9 downto 0)
-
+		VGA_R, VGA_G, VGA_B : OUT STD_LOGIC_VECTOR(9 downto 0);
+		PS2_CLK, PS2_DAT : INOUT STD_LOGIC
 	);
 END lights;
 
@@ -71,7 +71,9 @@ ARCHITECTURE Structure OF lights IS
 		vga_controller_SYNC         : out   std_logic;                                        -- SYNC
 		vga_controller_R            : out   std_logic_vector(9 downto 0);                     -- R
 		vga_controller_G            : out   std_logic_vector(9 downto 0);                     -- G
-		vga_controller_B            : out   std_logic_vector(9 downto 0)                      -- B
+		vga_controller_B            : out   std_logic_vector(9 downto 0);                     -- B
+		ps2_CLK                     : inout std_logic                     := 'X';             -- CLK
+      ps2_DAT                     : inout std_logic                     := 'X'              -- DAT
 );
 
 END COMPONENT;
@@ -126,7 +128,9 @@ BEGIN
 			vga_controller_SYNC         => VGA_SYNC,         	 --                 .SYNC
 			vga_controller_R            => VGA_R,            	 --                 .R
 			vga_controller_G            => VGA_G,            	 --                 .G
-			vga_controller_B            => VGA_B 					 --                 .B
+			vga_controller_B            => VGA_B, 					 --                 .B
+			ps2_CLK                     => ps2_CLK,
+			ps2_DAT							 => ps2_DAT
 		);
 		
 END Structure;
